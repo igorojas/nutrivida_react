@@ -1,0 +1,273 @@
+/* ---------- Banner principal de presentación ---------- */
+.bg-img {
+    background-image: url("../img/banner.jpg");
+    min-height: 380px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/* ---------- Sección: Inicio ---------- */
+#Inicio p { 
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--texto-secundario);
+}
+
+/* ---------- Sección: Te Ofrecemos ---------- */
+#Ofrecemos ul.ofrecemos-contenedor {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.ofrecemos-item {
+    max-width: 320px;
+    background-color: var(--verde-suave);
+    padding: 22px;
+    box-shadow: 0 4px 14px var(--sombra);
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 16px;
+    border: 3px solid var(--borde-suave);
+}
+
+.ofrecemos-item h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--texto-secundario);
+    margin: 0 0 6px 0;
+}
+
+.ofrecemos-item p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    color: var(--texto-secundario);
+}
+
+/* ---------- Sección: ¿Qué estás buscando? ---------- */
+.tipo {
+    display: flex;
+    gap: 16px; 
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tarjeta {
+    background-color: var(--verde-suave);
+    border: 3px solid var(--borde-suave);
+    border-radius: 16px;
+    margin-bottom: 10px;
+    padding: 16px;
+    text-align: center;
+    width: 230px;
+    box-shadow: 0 4px 14px var(--sombra);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--sombra);
+}
+
+.tarjeta h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--texto-secundario);
+    margin: 10px 0 6px 0;
+}
+
+.tarjeta p {
+    font-size: 18px;
+    color: var(--texto);
+    line-height: 1.5;
+}
+
+.espacio-imagen {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.espacio-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+}
+
+/* ---------- Sección: Best Sellers / Productos Populares ---------- */
+#Popular p {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--texto-secundario);
+}
+
+.bestsellers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.tarjeta-bestseller {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: white;
+    border: 2px solid var(--borde-suave);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 14px var(--sombra);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-bestseller:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--sombra);
+}
+
+.espacio-imagen-bestseller {
+    width: 100%;
+    height: 190px;
+    border-radius: 12px;
+    background-color: var(--verde-suave);
+}
+
+.espacio-imagen-bestseller img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.bestseller-titulo {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--texto);
+    margin: 12px 4px 6px 4px;
+}
+
+.bestseller-precio {
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    margin: 0 4px;
+    font-size: 17px;
+}
+
+.ver-todos-container {
+    margin-top: 26px;
+    text-align: center;
+}
+
+.btn-ver-todos {
+    display: inline-block;
+    background-color: var(--verde-oscuro);
+    color: white;
+    padding: 13px 46px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.6px;
+    box-shadow: 0 4px 14px var(--sombra);
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.btn-ver-todos:hover {
+    background-color: var(--verde-oscuro-hover);
+    transform: translateY(-2px);
+}
+
+/* ---------- Sección: Servicio de Salud / Nutricionista ---------- */
+#Nutricionista {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 15px 20px;
+    flex-wrap: wrap;
+}
+
+.nutri-video {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.nutri-video video {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 12px;
+    background-color: #000;
+    box-shadow: 0 6px 20px var(--sombra);
+}
+
+.nutri-texto {
+    max-width: 620px;
+    text-align: left;
+}
+
+.nutri-texto h2 {
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.nutri-texto p {
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0 0 10px 0;
+    color: var(--texto-secundario);
+}
+
+.ver-agendar-container {
+    margin-top: 30px;
+}
+
+.btn-agendar {
+    display: inline-block;
+    background-color: var(--verde-oscuro);
+    color: white;
+    padding: 14px 46px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.6px;
+    box-shadow: 0 4px 14px var(--sombra);
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.btn-agendar:hover {
+    background-color: var(--verde-oscuro-hover);
+    transform: translateY(-2px);
+}
+
+/* ---------- Adaptación de pantalla ---------- */
+@media (max-width: 800px) {
+    #Ofrecemos ul.ofrecemos-contenedor {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #Nutricionista {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nutri-texto {
+        text-align: center;
+    }
+}

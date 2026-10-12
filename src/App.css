@@ -1,0 +1,223 @@
+/* ---------- Variables globales y reset ---------- */
+/* Style */
+/* Variables CSS para definir el color de toda la pagina y estilos */
+:root {
+    --verde-oscuro: #1B6F52;
+    --verde-oscuro-hover: #145741;
+    --verde-medio: #2FA179;
+    --verde-suave: #E8F5EE;
+    --crema: #FBF8F2;
+    --borde-suave: #E4E0D2;
+    --texto: #2B2E2C;
+    --texto-secundario: #5c5f5d;
+    --dorado: #e9c98e;
+    --sombra: rgba(20, 63, 47, 0.10);
+}
+
+* { /* Selector universal que cambia la forma en la que el navegador calcula el tamaño */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito Sans', 'Segoe UI', Arial, sans-serif;
+    background-color: var(--borde-suave);
+    padding: 0;
+    margin: 0;
+    color: var(--texto);
+}
+
+/* ---------- Encabezado principal ---------- */
+/* Style */
+#encabezado {
+    background-color: var(--verde-medio);
+    color: white;
+    padding: 22px 50px;
+    display: flex;
+    justify-content: space-between; /* Empuja el eslogan a la derecha y el grupo logo+título a la izquierda */
+    align-items: center;
+}
+
+/* Agrupación del título e ícono/logo (Logo a la derecha del texto) */
+.header-brand {
+    display: flex;
+    flex-direction: row-reverse; /* Coloca el logo a la derecha del h1 */
+    align-items: center;
+    gap: 0;
+}
+
+/* Estilo del ícono/logo */
+.header-brand .logo-icono {
+    font-size: 19px;
+    color: var(--dorado);
+}
+
+/* Estilo del título principal */
+#encabezado h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+/* Estilo del eslogan alineado a la derecha */
+#encabezado p {
+    margin: 0;
+    font-size: 20px;
+    font-style: italic;
+}
+
+/* ---------- Barra de navegación ---------- */
+/* Barra de navegación superior: limpia, clara y minimalista */
+.topnav {
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    z-index: 1000;
+    box-shadow: 0 2px 8px var(--sombra);
+}
+
+/* Estilo de los enlaces dentro de la barra de navegación */
+.topnav a {
+    float: left;
+    color: var(--verde-oscuro);
+    text-align: center;
+    padding: 16px 18px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Color del enlace activo/actual */
+.topnav a.active,
+.topnav a.split.active {
+    background-color: var(--verde-medio);
+    color: white;
+    box-shadow: none; /* Elimina la sombra para mantener consistencia con los demás links activos */
+}
+
+/* Enlace alineado a la derecha (split) dentro de la barra de navegación */
+.topnav a.split {
+    float: right;
+    background-color: transparent;
+    color: var(--verde-oscuro);
+    box-shadow: 0 2px 10px var(--sombra);
+}
+
+/* Color general al pasar el cursor sobre los enlaces normales */
+.topnav a:hover {
+    background-color: var(--verde-medio);
+    color: var(--verde-oscuro);
+}
+
+/* Mantiene el enlace activo intacto sin cambiar de color al pasar el cursor */
+.topnav a.active:hover,
+.topnav a.split.active:hover {
+    background-color: var(--verde-oscuro-hover);
+    color: white;
+}
+
+.carrito-contador {
+    float: right;
+    color: var(--verde-oscuro);
+    padding: 14px 16px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* ---------- Estructura del contenido ---------- */
+#contenido { /* Main Id */
+    max-width: 1200px;
+    margin: 44px auto;
+    padding: 0 20px;
+}
+
+.seccion {
+    background-color: white;
+    border: 1px solid var(--borde-suave);
+    padding: 28px 34px;
+    border-radius: 18px;
+    margin-bottom: 26px;
+    box-shadow: 0 4px 16px var(--sombra);
+}
+
+/* ---------- Reglas para los encabezados ---------- */
+/* Reglas para las etiquetas h1, h2 y h3 */
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--verde-oscuro);
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+h3 {
+    font-weight: 600;
+    color: var(--verde-oscuro);
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+/* ---------- Botones universales ---------- */
+button {
+    cursor: pointer;
+    font-family: 'Nunito Sans', 'Segoe UI', Arial, sans-serif;
+}
+
+.button {
+    width: 62px;
+    height: 62px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: white;
+    border: 1px solid var(--borde-suave);
+    border-radius: 12px;
+    color: var(--verde-medio);
+    transition: 0.2s;
+    box-shadow: 0 2px 6px var(--sombra);
+}
+
+.button:hover {
+    background-color: var(--verde-suave);
+    border-color: var(--verde-medio);
+    transform: translateY(-1px);
+}
+
+/* ---------- Pie de página ---------- */
+#pie {
+    background-color: var(--verde-oscuro);
+    text-align: center;
+    padding: 38px 20px 30px 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#pie h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.pie-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.pie-logo .logo-icono {
+    font-size: 18px;
+    color: var(--dorado);
+}
+
+#pie p {
+    margin: 6px 0 0 0;
+    opacity: 0.85;
+    letter-spacing: 0.3px;
+}
