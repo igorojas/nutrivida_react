@@ -18,6 +18,8 @@ export const queBuscas = [
   {
     id: 3,
     imagen: imgDespensa,
+    // En el HTML original solo esta imagen tenía border-radius de 4px en línea
+    estiloImagen: { borderRadius: '4px' },
     titulo: 'Despensa Natural',
     descripcion: 'Descubre nuestra selección de productos de despensa naturales para cocinar de manera saludable.'
   }
