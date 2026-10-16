@@ -1,0 +1,125 @@
+/* ---------- Encabezado y estructura del formulario ---------- */
+/* Achica y centra el formulario */
+#inicio {
+    font-size: 15px;
+    border-radius: 20px;
+    border: 1px solid var(--borde-suave);
+    background-color: white;
+    box-shadow: 0 4px 18px var(--sombra);
+    padding: 30px;
+    max-width: 440px;
+    margin: 40px auto;
+}
+
+#inicio fieldset {
+    border: none;
+    padding: 10px 0 0 0;
+    display: flex;
+    flex-direction: column;      /* Centra elementos secundarios */
+}
+
+#inicio legend {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    display: flex;               /* Convierte a contenedor flexible */
+    justify-content: center;     /* Centra el texto horizontalmente */
+    width: 100%;                 /* Fuerza a ocupar todo el ancho posible */
+}
+
+/* ---------- Ícono y marca ---------- */
+/* Ícono centrado y con tamaño simple */
+.user-brand {
+    width: 120px;
+    height: 120px;
+    background-color: var(--verde-suave);
+    border: 3px solid var(--verde-oscuro);
+    border-radius: 50%;          /* Hace que el contenedor sea circular */
+    display: flex;
+    justify-content: center;     /* Centra el ícono horizontalmente */
+    align-items: center;         /* Centra el ícono verticalmente */
+    margin: 0 auto 20px auto;
+}
+
+/* Tamaño y color del ícono dentro del círculo */
+.user-brand i {
+    font-size: 80px;             /* Ajusta el tamaño del logo */
+    color: var(--verde-oscuro);  /* Color del ícono */
+}
+
+/* ---------- Campos de entrada ---------- */
+/* Ambos inputs con exactamente el mismo tamaño */
+.ini {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    transition: border-color 0.2s ease;
+}
+
+.ini:focus {
+    outline: none;
+    border-color: var(--verde-oscuro);
+}
+
+/* ---------- Opciones de formulario ---------- */
+/* Alinea el checkbox a la izquierda con margen simple */
+.mostrar-pass {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    gap: 6px;
+    color: var(--texto-secundario);
+}
+
+/* ---------- Botones y enlaces ---------- */
+/* Botón de envío */
+.btn-inicio {
+    width: 100%;
+    background-color: var(--verde-oscuro);
+    border: none;
+    color: white;
+    padding: 13px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 16px;
+    border-radius: 24px;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.btn-inicio:hover {
+    background-color: var(--verde-oscuro-hover);
+    transform: translateY(-1px);
+}
+
+/* Texto y link inferior de registro */
+.texto-registro {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--texto-secundario);
+    text-align: center;
+}
+
+.texto-registro a {
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.texto-registro a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Adaptación ---------- */
+@media (max-width: 800px) {
+    #inicio {
+        max-width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+}

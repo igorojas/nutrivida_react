@@ -1,0 +1,528 @@
+/* ---------- Encabezado de la sección ---------- */
+#agendar-intro {
+    text-align: center;
+}
+
+#agendar-intro p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--texto-secundario);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* ---------- Indicador de pasos ---------- */
+.pasos-indicador {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 26px 0 34px 0;
+    flex-wrap: wrap;
+}
+
+.paso-indicador {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: var(--verde-suave);
+    color: var(--texto-secundario);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.paso-indicador .paso-numero {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid var(--borde-suave);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.paso-indicador.activo {
+    background-color: var(--verde-oscuro);
+    color: white;
+}
+
+.paso-indicador.activo .paso-numero {
+    border-color: white;
+    color: var(--verde-oscuro);
+}
+
+.paso-indicador.completado .paso-numero {
+    background-color: var(--verde-oscuro);
+    border-color: var(--verde-oscuro);
+    color: white;
+}
+
+/* ---------- Paneles de pasos ---------- */
+.paso-panel {
+    display: none;
+}
+
+.paso-panel.activo {
+    display: block;
+    animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.paso-titulo {
+    margin-top: 0;
+}
+
+.paso-nota {
+    color: var(--texto-secundario);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* ---------- Paso 1: nutricionistas ---------- */
+.nutri-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+    margin: 0 0 24px 0;
+}
+
+.nutri-tarjeta {
+    position: relative;
+    background-color: white;
+    border: 2px solid var(--borde-suave);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.nutri-tarjeta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px var(--sombra);
+}
+
+.nutri-tarjeta.seleccionada {
+    border-color: var(--verde-oscuro);
+    box-shadow: 0 8px 20px var(--sombra);
+}
+
+.nutri-tarjeta-imagen {
+    position: relative;
+    height: 130px;
+}
+
+.nutri-tarjeta-imagen > img:first-child {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.nutri-foto {
+    position: absolute;
+    bottom: -34px;
+    left: 18px;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+    box-shadow: 0 3px 8px var(--sombra);
+    z-index: 1; /* Mantiene la foto bajo el badge si se cruzan */
+}
+
+.nutri-tarjeta-info {
+    padding: 44px 18px 20px 18px;
+}
+
+.nutri-tarjeta-info h3 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+}
+
+.nutri-especialidad {
+    display: inline-block;
+    background-color: var(--verde-suave);
+    color: var(--verde-oscuro);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    z-index: 2; /* Coloca la especialidad por encima del fondo y la foto */
+}
+
+.nutri-bio {
+    font-size: 14px;
+    color: var(--texto-secundario);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.nutri-experiencia {
+    font-size: 13px;
+    color: var(--verde-oscuro);
+    font-weight: 600;
+    margin: 0;
+}
+
+.nutri-experiencia i {
+    margin-right: 4px;
+}
+
+/* ---------- Paso 2: calendario y horarios ---------- */
+.paso2-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.calendario-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.calendario-cabecera h4 {
+    margin: 0;
+    color: var(--verde-oscuro);
+}
+
+.btn-mes {
+    background-color: var(--verde-suave);
+    border: none;
+    color: var(--verde-oscuro);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 15px;
+}
+
+.btn-mes:hover {
+    background-color: var(--verde-oscuro);
+    color: white;
+}
+
+.calendario-dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 12px;
+    color: var(--texto-secundario);
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.calendario-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.dia-boton {
+    aspect-ratio: 1;
+    border: 1px solid var(--borde-suave);
+    background-color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.dia-boton:hover {
+    background-color: var(--verde-suave);
+    border-color: var(--verde-oscuro);
+}
+
+.dia-boton.seleccionado {
+    background-color: var(--verde-oscuro);
+    color: white;
+    border-color: var(--verde-oscuro);
+}
+
+.dia-boton.deshabilitado {
+    color: #c9c9c9;
+    background-color: #f5f5f2;
+    cursor: not-allowed;
+}
+
+.dia-vacio {
+    aspect-ratio: 1;
+}
+
+.horarios-columna h4 {
+    margin-top: 0;
+    color: var(--verde-oscuro);
+}
+
+#texto-horarios {
+    font-size: 14px;
+    color: var(--texto-secundario);
+    margin-bottom: 14px;
+}
+
+.horarios-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hora-boton {
+    padding: 10px 18px;
+    border-radius: 20px;
+    border: 2px solid var(--verde-oscuro);
+    background-color: white;
+    color: var(--verde-oscuro);
+    font-weight: 600;
+}
+
+.hora-boton:hover {
+    background-color: var(--verde-suave);
+}
+
+.hora-boton.seleccionada {
+    background-color: var(--verde-oscuro);
+    color: white;
+}
+
+/* ---------- Paso 3: formulario y resumen ---------- */
+.paso3-layout {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 30px;
+}
+
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.campo-form label {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--texto);
+}
+
+.campo-form input,
+.campo-form textarea {
+    padding: 11px 14px;
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.campo-form input:focus,
+.campo-form textarea:focus {
+    outline: none;
+    border-color: var(--verde-oscuro);
+}
+
+.resumen-caja {
+    background-color: var(--verde-suave);
+    border-radius: 16px;
+    padding: 22px;
+    height: fit-content;
+}
+
+.resumen-caja h4 {
+    margin-top: 0;
+    color: var(--verde-oscuro);
+}
+
+.resumen-linea {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--borde-suave);
+    font-size: 14px;
+}
+
+.resumen-linea:last-child {
+    border-bottom: none;
+}
+
+.resumen-linea span:first-child {
+    color: var(--texto-secundario);
+    font-weight: 600;
+}
+
+.resumen-linea span:last-child {
+    font-weight: 700;
+    color: var(--texto);
+    text-align: right;
+}
+
+/* ---------- Botones de navegación entre pasos ---------- */
+.paso-botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.btn-siguiente,
+.btn-confirmar {
+    background-color: var(--verde-oscuro);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 24px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-siguiente:hover,
+.btn-confirmar:hover {
+    background-color: var(--verde-oscuro-hover);
+    transform: translateY(-1px);
+}
+
+.btn-siguiente:disabled {
+    background-color: #c9d6cf;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-anterior {
+    background-color: white;
+    border: 1px solid var(--borde-suave);
+    color: var(--verde-oscuro);
+    padding: 12px 26px;
+    border-radius: 24px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.btn-anterior:hover {
+    background-color: var(--verde-suave);
+}
+
+.btn-confirmar {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 6px;
+}
+
+/* ---------- Mensaje de éxito ---------- */
+.oculto {
+    display: none !important;
+}
+
+.mensaje-exito {
+    text-align: center;
+    padding: 30px 10px;
+}
+
+.mensaje-exito i {
+    font-size: 60px;
+    color: var(--verde-oscuro);
+    margin-bottom: 14px;
+}
+
+.mensaje-exito h3 {
+    font-size: 22px;
+}
+
+.mensaje-exito p {
+    color: var(--texto-secundario);
+    max-width: 460px;
+    margin: 6px auto 20px auto;
+}
+
+.btn-nueva-cita {
+    background-color: var(--verde-oscuro);
+    color: white;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 24px;
+    font-weight: 700;
+}
+
+.btn-nueva-cita:hover {
+    background-color: var(--verde-oscuro-hover);
+}
+
+/* ---------- Información adicional ---------- */
+.info-nutri-destacado {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background-color: var(--verde-suave);
+    border-radius: 16px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+}
+
+.info-nutri-destacado img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+.info-nutri-destacado h4 {
+    margin: 0 0 4px 0;
+    color: var(--verde-oscuro);
+}
+
+.info-nutri-destacado p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--texto-secundario);
+}
+
+.info-general {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 6px;
+}
+
+.info-item {
+    flex: 1;
+    min-width: 200px;
+    background-color: var(--verde-suave);
+    border-radius: 14px;
+    padding: 16px 18px;
+}
+
+.info-item i {
+    color: var(--verde-oscuro);
+    font-size: 20px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.info-item h4 {
+    margin: 0 0 6px 0;
+    font-size: 15px;
+}
+
+.info-item p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--texto-secundario);
+    line-height: 1.5;
+}
+
+/* Regla que permite aplicar estilos específicos según las características del dispositivo */
+@media (max-width: 800px) {
+    .paso2-layout,
+    .paso3-layout {
+        grid-template-columns: 1fr;
+    }
+}

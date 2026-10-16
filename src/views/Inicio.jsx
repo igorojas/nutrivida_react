@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -5,12 +6,22 @@ import Seccion from '../components/Seccion';
 import Galeria from '../components/Galeria';
 
 import { queBuscas } from '../data/queBuscas';
-import { bestSellers } from '../data/bestSellers';
+import { productos } from '../data/productos';
 
-function Inicio() {
+// Best Sellers = los productos marcados con destacado: true en productos.js (ya no hay un archivo aparte).
+const bestSellers = productos.filter((producto) => producto.destacado);
+
+// 'cantidad' es el total del carrito (viene de App) y se lo pasamos al Header para el contador.
+function Inicio({ cantidad }) {
+  // useEffect con [] se ejecuta una vez al mostrar la página: aquí cambia el título de la pestaña
+  // (en el original cada página tenía el suyo; el de index.html de Vite es solo el valor inicial).
+  useEffect(() => {
+    document.title = 'Nutrivida';
+  }, []);
+
   return (
     <>
-      <Header />
+      <Header cantidad={cantidad} />
 
       <div className="bg-img"></div>
 
@@ -59,6 +70,7 @@ function Inicio() {
           <div className="nutri-video">
             <video controls autoPlay muted loop preload="metadata">
               <source src="/nutricionista.mp4" type="video/mp4" />
+              <source src="/nutricionista.ogg" type="video/ogg" />
               Tu navegador no soporta el video.
             </video>
           </div>

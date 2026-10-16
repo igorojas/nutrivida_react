@@ -1,0 +1,154 @@
+/* ---------- Formulario de registro ---------- */
+/* Registro Unificado */
+#registro {
+    font-size: 15px;
+    border-radius: 20px;
+    border: 1px solid var(--borde-suave);
+    background-color: white;
+    box-shadow: 0 4px 18px var(--sombra);
+    padding: 30px;
+    max-width: 440px;
+    margin: 40px auto;
+}
+
+#registro fieldset {
+    border: none;
+    padding: 10px 0 0 0;
+    display: flex;
+    flex-direction: column;      /* Centra elementos secundarios */
+}
+
+#registro legend {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--verde-oscuro);
+    display: flex;               /* Convierte a contenedor flexible */
+    justify-content: center;     /* Centra el texto horizontalmente */
+    width: 100%;                 /* Fuerza a ocupar todo el ancho posible */
+}
+
+/* ---------- Campos de entrada ---------- */
+/* Campos de entrada con estilo uniforme */
+.form {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    transition: border-color 0.2s ease;
+}
+
+.form:focus {
+    outline: none;
+    border-color: var(--verde-oscuro);
+}
+
+/* ---------- Opciones y validación ---------- */
+/* Alinea el checkbox a la izquierda con margen simple */
+.mostrar-pass {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    gap: 6px;
+    color: var(--texto-secundario);
+}
+
+/* Cuadro de validación de contraseña */
+#message {
+    display: none;
+    background: var(--verde-suave);
+    color: var(--texto);
+    position: relative;
+    padding: 15px 20px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--borde-suave);
+}
+
+#message h3 {
+    font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--texto);
+}
+
+#message p {
+    padding-left: 25px;
+    font-size: 14px;
+    margin: 6px 0;
+    position: relative;
+}
+
+/* Indicadores de requisitos */
+.valid {
+    color: var(--verde-oscuro);
+    font-weight: 600;
+}
+
+.valid:before {
+    position: absolute;
+    left: 0;
+    content: "✔";
+}
+
+.invalid {
+    color: #d32f2f;
+}
+
+.invalid:before {
+    position: absolute;
+    left: 0;
+    content: "✖";
+}
+
+/* ---------- Botones y enlaces ---------- */
+/* Botón de envío principal */
+.submit {
+    width: 100%;
+    background-color: var(--verde-oscuro);
+    border: none;
+    color: white;
+    padding: 13px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 16px;
+    border-radius: 24px;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.submit:hover {
+    background-color: var(--verde-oscuro-hover);
+    transform: translateY(-1px);
+}
+
+/* Texto y link inferior de inicio de sesión */
+.texto-inicio {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--texto-secundario);
+    text-align: center;
+}
+
+.texto-inicio a {
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.texto-inicio a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Adaptación ---------- */
+@media (max-width: 800px) {
+    #registro {
+        max-width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+}
