@@ -11,16 +11,16 @@ import 'font-awesome/css/font-awesome.min.css'
 // En React, un CSS importado queda activo en TODA la aplicación, no solo en su página;
 // por eso solo se importan los de las páginas que ya existen.
 import './assets/styles/Productos_Style.css'
-// import './assets/styles/Login_Style.css'
-// import './assets/styles/Registro_Style.css'
+import './assets/styles/Login_Style.css'
+import './assets/styles/Registro_Style.css'
 import './assets/styles/Agendar_Style.css'
 
 // Vistas (una por página). Las comentadas aún no existen: se activan al crearlas.
 import Inicio from './views/Inicio.jsx'
 import Productos from './views/Productos.jsx'
 import Producto from './views/Producto.jsx'
-// import Login from './views/Login.jsx'
-// import Registro from './views/Registro.jsx'
+import Login from './views/Login.jsx'
+import Registro from './views/Registro.jsx'
 import Agendar from './views/Agendar.jsx'
 
 import { obtenerCantidadCarrito, agregarAlCarrito } from './utils/carrito'
@@ -47,8 +47,8 @@ function App() {
       <Route path='/productos' element={<Productos cantidad={cantidadCarrito} onAnadir={agregar} />} />
       {/* ':id' es un parámetro dinámico: la vista Producto lo lee con useParams() para saber qué producto mostrar (/producto/3). */}
       <Route path='/producto/:id' element={<Producto cantidad={cantidadCarrito} onAnadir={agregar} />} />
-      {/* <Route path='/login' element={<Login cantidad={cantidadCarrito} />} /> */}
-      {/* <Route path='/registro' element={<Registro cantidad={cantidadCarrito} />} /> */}
+      <Route path='/login' element={<Login cantidad={cantidadCarrito} />} />
+      <Route path='/registro' element={<Registro cantidad={cantidadCarrito} />} />
       <Route path='/agendar' element={<Agendar cantidad={cantidadCarrito} />} />
     </Routes>
   )
