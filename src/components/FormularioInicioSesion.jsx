@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import CampoFormulario from './CampoFormulario';
 import CampoContrasena from './CampoContrasena';
 import { validarCorreo, contrasenaNoVacia, mensajes } from '../utils/validaciones';
+import { usuarios } from '../data/usuarios';
+import { guardarSesion } from '../utils/sesion';
 
-// Formulario de inicio de sesión. Por ahora solo valida el formato, igual que validainicio.js;
-// las credenciales estáticas y la sesión con localStorage se agregan en una etapa posterior.
+// Formulario de inicio de sesión. Valida el formato igual que validainicio.js y luego compara el correo y la
+// contraseña con los usuarios estáticos de data/usuarios.js; si coinciden, guarda la sesión en localStorage.
 function FormularioInicioSesion() {
   const [datos, setDatos] = useState({ correo: '', contrasenia: '' });
+  // navigate permite cambiar de página desde el código (aquí, al iniciar sesión).
+  const navigate = useNavigate();
 
   // [name] entre corchetes usa el nombre del campo como clave: actualiza solo ese dato.
   const cambiar = (e) => setDatos({ ...datos, [e.target.name]: e.target.value });
@@ -20,13 +24,22 @@ function FormularioInicioSesion() {
   };
 
   const enviar = (e) => {
-    // Igual que el original: nunca se envía el formulario, solo se valida.
+    // El formulario nunca se envía al navegador: se valida y se resuelve aquí.
     e.preventDefault();
 
     if (!validarCorreo(datos.correo)) return rechazar(mensajes.correo, 'correo');
     if (!contrasenaNoVacia(datos.contrasenia)) return rechazar(mensajes.contrasenaVacia, 'contrasenia');
 
+    // Busca un usuario estático con ese correo y contraseña; si no existe, se rechaza el ingreso.
+    const usuario = usuarios.find(
+      (u) => u.correo === datos.correo.trim().toLowerCase() && u.contrasenia === datos.contrasenia
+    );
+    if (!usuario) return rechazar(mensajes.credenciales, 'contrasenia');
+
+    guardarSesion(usuario);
     alert('¡Inicio de sesión exitoso!');
+    // Va a Inicio: ahí el Header ya muestra "Mi Perfil" (y "Panel" si es administrador).
+    navigate('/');
   };
 
   return (

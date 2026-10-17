@@ -60,5 +60,6 @@ export const mensajes = {
   telefono: 'El teléfono debe comenzar con +569 y tener 8 dígitos adicionales (ejemplo: +56912345678)',
   edad: 'Debes tener 18 años o más para registrarte.',
   contrasena: 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.',
-  contrasenaVacia: 'Por favor ingrese su contraseña.'
+  contrasenaVacia: 'Por favor ingrese su contraseña.',
+  credenciales: 'Correo o contraseña incorrectos.'
 };

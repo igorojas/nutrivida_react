@@ -1,0 +1,134 @@
+/* ---------- Ficha de perfil ---------- */
+/* Tarjeta centrada con los datos del usuario que inició sesión */
+.perfil-ficha {
+    max-width: 440px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ---------- Ícono y nombre ---------- */
+/* Círculo con el ícono de usuario, igual que el del inicio de sesión */
+.perfil-avatar {
+    width: 120px;
+    height: 120px;
+    background-color: var(--verde-suave);
+    border: 3px solid var(--verde-oscuro);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 16px auto;
+}
+
+.perfil-avatar i {
+    font-size: 70px;
+    color: var(--verde-oscuro);
+}
+
+.perfil-nombre {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+}
+
+/* Etiqueta con el rol (Administrador / Paciente) */
+.perfil-rol {
+    display: inline-block;
+    background-color: var(--verde-oscuro);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 4px 14px;
+    border-radius: 20px;
+}
+
+/* ---------- Datos del usuario ---------- */
+.perfil-datos {
+    margin-top: 24px;
+    text-align: left;
+    background-color: var(--verde-suave);
+    border-radius: 16px;
+    padding: 6px 20px;
+}
+
+.perfil-dato {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--borde-suave);
+    font-size: 15px;
+}
+
+.perfil-dato:last-child {
+    border-bottom: none;
+}
+
+.perfil-etiqueta {
+    color: var(--texto-secundario);
+    font-weight: 600;
+}
+
+.perfil-valor {
+    color: var(--texto);
+    font-weight: 700;
+    text-align: right;
+    word-break: break-word;
+}
+
+/* ---------- Botones ---------- */
+.perfil-botones {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* Acceso al Panel de Control (solo administrador) */
+.btn-perfil-panel {
+    display: block;
+    background-color: var(--verde-oscuro);
+    color: white;
+    padding: 13px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.btn-perfil-panel:hover {
+    background-color: var(--verde-oscuro-hover);
+    transform: translateY(-1px);
+}
+
+.btn-perfil-cerrar {
+    background-color: white;
+    border: 1px solid var(--borde-suave);
+    color: var(--verde-oscuro);
+    padding: 13px;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
+}
+
+.btn-perfil-cerrar:hover {
+    background-color: var(--verde-suave);
+}
+
+/* ---------- Adaptación ---------- */
+@media (max-width: 800px) {
+    .perfil-ficha {
+        max-width: 100%;
+    }
+
+    .perfil-dato {
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .perfil-valor {
+        text-align: left;
+    }
+}
