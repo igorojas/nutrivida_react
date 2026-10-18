@@ -25,7 +25,8 @@ function Carrito({ cantidad, onCambio }) {
     .map((item) => ({ producto: productos.find((p) => p.id === item.id), cantidad: item.cantidad }))
     .filter((linea) => linea.producto);
 
-  const total = lineas.reduce((suma, { producto, cantidad }) => suma + producto.precio * cantidad, 0);
+  // Se usa 'linea.cantidad' (unidades de ese producto) para no confundirla con la prop 'cantidad' (total del carrito).
+  const total = lineas.reduce((suma, linea) => suma + linea.producto.precio * linea.cantidad, 0);
 
   const quitar = (id) => {
     setItems(quitarDelCarrito(id));
@@ -57,8 +58,8 @@ function Carrito({ cantidad, onCambio }) {
                   <Link to="/productos" className="btn-ver-todos">VER CATÁLOGO</Link>
                 </div>
               ) : (
-                lineas.map(({ producto, cantidad }) => (
-                  <ItemCarrito key={producto.id} producto={producto} cantidad={cantidad} onQuitar={quitar} />
+                lineas.map((linea) => (
+                  <ItemCarrito key={linea.producto.id} producto={linea.producto} cantidad={linea.cantidad} onQuitar={quitar} />
                 ))
               )}
             </div>

@@ -1,15 +1,13 @@
 import { useState } from 'react';
 // Link: reemplaza las etiquetas <a> para navegar sin recargar la página.
 // useLocation: hook para obtener la URL activa y saber en qué página está el usuario.
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { itemsMenu, itemPerfil } from '../data/itemsMenu';
 import { obtenerSesion } from '../utils/sesion';
 
 function Header({ cantidad = 0 }) {
   // Obtiene la ruta de la URL activa (ejemplo: "/", "/productos", "/login")
   const location = useLocation();
-  // navigate permite cambiar de página desde el código (aquí, al hacer clic en el carrito).
-  const navigate = useNavigate();
 
   // Usuario con sesión iniciada (o null). useState(obtenerSesion) lee localStorage una sola vez al mostrarse el Header;
   // como cada vista crea su propio Header al navegar, al iniciar o cerrar sesión el menú se actualiza solo.
@@ -61,9 +59,10 @@ function Header({ cantidad = 0 }) {
             <i className={item.icon}></i> {item.label}
           </Link>
         ))}
-        <span className="carrito-contador" style={{ cursor: 'pointer' }} onClick={() => navigate('/carrito')}>
+        {/* El carrito es un enlace a /carrito, como los demás items del menú. */}
+        <Link to="/carrito" className="carrito-contador">
           <i className="fa fa-fw fa-shopping-basket"></i> Carrito (<span id="carrito-num">{cantidad}</span>)
-        </span>
+        </Link>
       </nav>
     </>
   );

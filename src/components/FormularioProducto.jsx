@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import CampoFormulario from './CampoFormulario';
+import { productos } from '../data/productos';
+import { mensajes } from '../utils/validaciones';
 
-const CATEGORIAS = ['Suplementos', 'Snacks', 'Despensa', 'Superalimentos', 'Bebidas Saludables'];
+// Categorías del catálogo, sacadas de los propios productos (Set quita las repetidas): no hay que mantener otra lista a mano.
+const CATEGORIAS = [...new Set(productos.map((p) => p.categoria))];
 const VACIO = { nombre: '', categoria: CATEGORIAS[0], precio: '', descripcion: '' };
 
 // Formulario del Panel de Control para crear un producto.
@@ -23,9 +26,9 @@ function FormularioProducto({ onAgregar }) {
     e.preventDefault();
 
     const precio = parseInt(datos.precio);
-    if (datos.nombre.trim() === '') return rechazar('Ingrese el nombre del producto.', 'producto-nombre');
-    if (!precio || precio < 1) return rechazar('El precio debe ser un número mayor a 0.', 'producto-precio');
-    if (datos.descripcion.trim() === '') return rechazar('Ingrese una descripción.', 'producto-descripcion');
+    if (datos.nombre.trim() === '') return rechazar(mensajes.productoNombre, 'producto-nombre');
+    if (!precio || precio < 1) return rechazar(mensajes.productoPrecio, 'producto-precio');
+    if (datos.descripcion.trim() === '') return rechazar(mensajes.productoDescripcion, 'producto-descripcion');
 
     onAgregar({ ...datos, nombre: datos.nombre.trim(), descripcion: datos.descripcion.trim(), precio });
     setDatos(VACIO);

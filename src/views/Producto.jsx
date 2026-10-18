@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import Seccion from '../components/Seccion';
 import Galeria from '../components/Galeria';
 import DetalleProducto from '../components/DetalleProducto';
+import Error404 from './Error404';
 
 import { productos } from '../data/productos';
 
@@ -14,13 +15,21 @@ function Producto({ cantidad, onAnadir }) {
   // useParams lee el parámetro ':id' de la ruta /producto/:id (llega como texto, ej. "3").
   const { id } = useParams();
 
-  // Igual que el original: si no hay id, no es un número o no existe, se muestra el producto 1.
-  const producto = productos.find((p) => p.id === parseInt(id)) || productos[0];
+  // Number('3') da 3 y Number('3abc') da NaN, así que un id mal escrito no coincide con ningún producto.
+  // Si el id no existe (producto queda undefined) más abajo se muestra la página 404.
+  const producto = productos.find((p) => p.id === Number(id));
 
   // Título de la pestaña según el producto ("Nombre - NutriVida"); se actualiza al cambiar de producto.
+  // Va antes del 'return' condicional porque los hooks siempre deben ejecutarse en el mismo orden;
+  // si no hay producto, el título lo pone la página 404.
   useEffect(() => {
-    document.title = `${producto.nombre} - NutriVida`;
-  }, [producto.nombre]);
+    if (producto) document.title = `${producto.nombre} - NutriVida`;
+  }, [producto]);
+
+  // Id inválido: página 404 (la dirección de la barra no cambia).
+  if (!producto) {
+    return <Error404 cantidad={cantidad} />;
+  }
 
   // Relacionados: los primeros 4 productos distintos al actual.
   const relacionados = productos.filter((p) => p.id !== producto.id).slice(0, 4);

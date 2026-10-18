@@ -117,12 +117,17 @@ body {
     color: white;
 }
 
-.carrito-contador {
+.topnav .carrito-contador {
     float: right;
     color: var(--verde-oscuro);
     padding: 14px 16px;
     font-size: 15px;
     font-weight: 600;
+}
+
+/* El carrito no cambia de color al pasar el cursor (los demás enlaces de la barra sí) */
+.topnav .carrito-contador:hover {
+    background-color: transparent;
 }
 
 /* ---------- Estructura del contenido ---------- */

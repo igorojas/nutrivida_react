@@ -6,12 +6,14 @@ import FormularioProducto from '../components/FormularioProducto';
 
 import { productos } from '../data/productos';
 import { formatoPrecio } from '../utils/formatoPrecio';
+import { quitarDelCarrito } from '../utils/carrito';
 // Imagen genérica para los productos nuevos (no se suben archivos). Se puede cambiar por otra de assets/img.
-import imagenGenerica from '../assets/img/supplements.jpg';
+import imagenGenerica from '../assets/img/producto_generico.jpg';
 
 // 'cantidad' es el total del carrito (viene de App) y se lo pasamos al Header para el contador.
+// 'onCambio' es la función de App que vuelve a leer el total del carrito: se usa al eliminar un producto que estaba en el carrito.
 // Esta página solo se muestra al administrador: App.jsx la envuelve con <RutaPrivada>.
-function Admin({ cantidad }) {
+function Admin({ cantidad, onCambio }) {
   // Copia del catálogo para que React redibuje la tabla cuando se agregue o elimine un producto.
   const [lista, setLista] = useState([...productos]);
 
@@ -34,6 +36,10 @@ function Admin({ cantidad }) {
 
     productos.splice(productos.findIndex((p) => p.id === id), 1);
     setLista([...productos]);
+
+    // Si el producto estaba en el carrito, se quita de ahí también y se actualiza el contador del Header.
+    quitarDelCarrito(id);
+    onCambio();
   };
 
   // Estadísticas simples del catálogo.

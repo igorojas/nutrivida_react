@@ -1,0 +1,57 @@
+/* ---------- Página no encontrada (404) ---------- */
+/* Contenido centrado dentro de la sección */
+.error404-contenido {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Número 404 grande, con el verde de la marca */
+.error404-codigo {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--verde-oscuro);
+    margin: 0 0 10px 0;
+}
+
+.error404-contenido h2 {
+    margin-top: 0;
+}
+
+.error404-texto {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--texto-secundario);
+    margin: 0 0 26px 0;
+}
+
+/* ---------- Botón ---------- */
+/* Mismo estilo redondeado de los botones de login, registro y perfil */
+.btn-error404 {
+    display: inline-block;
+    background-color: var(--verde-oscuro);
+    color: white;
+    padding: 13px 46px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.6px;
+    box-shadow: 0 4px 14px var(--sombra);
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.btn-error404:hover {
+    background-color: var(--verde-oscuro-hover);
+    transform: translateY(-2px);
+}
+
+/* ---------- Adaptación ---------- */
+@media (max-width: 800px) {
+    .error404-codigo {
+        font-size: 72px;
+    }
+}

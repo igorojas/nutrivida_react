@@ -7,9 +7,7 @@ import './App.css'
 import './assets/styles/Inicio_Style.css'
 import 'font-awesome/css/font-awesome.min.css'
 
-// Estilos de las demás páginas (se descomenta cada uno junto con su vista).
-// En React, un CSS importado queda activo en TODA la aplicación, no solo en su página;
-// por eso solo se importan los de las páginas que ya existen.
+// Estilos de cada página. En React, un CSS importado queda activo en TODA la aplicación, no solo en su página.
 import './assets/styles/Productos_Style.css'
 import './assets/styles/Login_Style.css'
 import './assets/styles/Registro_Style.css'
@@ -17,8 +15,9 @@ import './assets/styles/Agendar_Style.css'
 import './assets/styles/Perfil_Style.css'
 import './assets/styles/Carrito_Style.css'
 import './assets/styles/Admin_Style.css'
+import './assets/styles/Error404_Style.css'
 
-// Vistas (una por página). Las comentadas aún no existen: se activan al crearlas.
+// Vistas (una por página).
 import Inicio from './views/Inicio.jsx'
 import Productos from './views/Productos.jsx'
 import Producto from './views/Producto.jsx'
@@ -28,6 +27,7 @@ import Agendar from './views/Agendar.jsx'
 import Perfil from './views/Perfil.jsx'
 import Carrito from './views/Carrito.jsx'
 import Admin from './views/Admin.jsx'
+import Error404 from './views/Error404.jsx'
 import RutaPrivada from './components/RutaPrivada.jsx'
 
 import { obtenerCantidadCarrito, agregarAlCarrito } from './utils/carrito'
@@ -47,7 +47,7 @@ function App() {
     setCantidadCarrito(agregarAlCarrito(producto.id, cantidad))
   }
 
-  // La página Carrito la llama al quitar un producto o comprar: vuelve a leer el total guardado y actualiza el Header.
+  // Carrito la llama al quitar un producto o comprar, y Admin al eliminar un producto del catálogo: vuelve a leer el total guardado y actualiza el Header.
   const actualizarCantidad = () => setCantidadCarrito(obtenerCantidadCarrito())
 
   // Cada vista recibe 'cantidad' y se la pasa a su <Header cantidad={cantidad} />.
@@ -64,7 +64,9 @@ function App() {
       <Route path='/perfil' element={<Perfil cantidad={cantidadCarrito} />} />
       <Route path='/carrito' element={<Carrito cantidad={cantidadCarrito} onCambio={actualizarCantidad} />} />
       {/* RutaPrivada: solo el administrador con sesión entra; los demás van a /login. */}
-      <Route path='/admin' element={<RutaPrivada><Admin cantidad={cantidadCarrito} /></RutaPrivada>} />
+      <Route path='/admin' element={<RutaPrivada><Admin cantidad={cantidadCarrito} onCambio={actualizarCantidad} /></RutaPrivada>} />
+      {/* '*' atrapa cualquier dirección que no coincida con las rutas de arriba: por eso va al final. */}
+      <Route path='*' element={<Error404 cantidad={cantidadCarrito} />} />
     </Routes>
   )
 }

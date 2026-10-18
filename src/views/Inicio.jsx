@@ -8,11 +8,13 @@ import Galeria from '../components/Galeria';
 import { queBuscas } from '../data/queBuscas';
 import { productos } from '../data/productos';
 
-// Best Sellers = los productos marcados con destacado: true en productos.js (ya no hay un archivo aparte).
-const bestSellers = productos.filter((producto) => producto.destacado);
-
 // 'cantidad' es el total del carrito (viene de App) y se lo pasamos al Header para el contador.
 function Inicio({ cantidad }) {
+  // Best Sellers = los productos marcados con destacado: true en productos.js (ya no hay un archivo aparte).
+  // Se calcula aquí dentro (y no fuera del componente) para que, si el Panel elimina un producto destacado,
+  // Inicio ya no lo muestre al volver a esta página.
+  const bestSellers = productos.filter((producto) => producto.destacado);
+
   // useEffect con [] se ejecuta una vez al mostrar la página: aquí cambia el título de la pestaña
   // (en el original cada página tenía el suyo; el de index.html de Vite es solo el valor inicial).
   useEffect(() => {

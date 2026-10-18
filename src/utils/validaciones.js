@@ -1,4 +1,4 @@
-// Reglas de validación compartidas por Registro, Inicio de Sesión y Agendar Cita.
+// Reglas de validación compartidas por Registro, Inicio de Sesión, Agendar Cita y el formulario de productos del Panel.
 // Cada función recibe el texto del campo y devuelve true si es válido o false si no.
 
 // Solo letras (con tildes y ñ) y espacios.
@@ -61,5 +61,8 @@ export const mensajes = {
   edad: 'Debes tener 18 años o más para registrarte.',
   contrasena: 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.',
   contrasenaVacia: 'Por favor ingrese su contraseña.',
-  credenciales: 'Correo o contraseña incorrectos.'
+  credenciales: 'Correo o contraseña incorrectos.',
+  productoNombre: 'Ingrese el nombre del producto.',
+  productoPrecio: 'El precio debe ser un número mayor a 0.',
+  productoDescripcion: 'Ingrese una descripción.'
 };
