@@ -15,6 +15,8 @@ import './assets/styles/Login_Style.css'
 import './assets/styles/Registro_Style.css'
 import './assets/styles/Agendar_Style.css'
 import './assets/styles/Perfil_Style.css'
+import './assets/styles/Carrito_Style.css'
+import './assets/styles/Admin_Style.css'
 
 // Vistas (una por página). Las comentadas aún no existen: se activan al crearlas.
 import Inicio from './views/Inicio.jsx'
@@ -24,6 +26,9 @@ import Login from './views/Login.jsx'
 import Registro from './views/Registro.jsx'
 import Agendar from './views/Agendar.jsx'
 import Perfil from './views/Perfil.jsx'
+import Carrito from './views/Carrito.jsx'
+import Admin from './views/Admin.jsx'
+import RutaPrivada from './components/RutaPrivada.jsx'
 
 import { obtenerCantidadCarrito, agregarAlCarrito } from './utils/carrito'
 
@@ -37,9 +42,13 @@ function App() {
   // Función que reciben las tarjetas y el detalle como 'onAnadir'.
   // Suma al carrito (localStorage) y actualiza el estado con el nuevo total, así el Header se redibuja.
   // La tarjeta del catálogo suma 1 (cantidad por defecto); el detalle envía la cantidad elegida.
+  // Se guarda el id del producto para que la página Carrito sepa qué se añadió.
   const agregar = (producto, cantidad = 1) => {
-    setCantidadCarrito(agregarAlCarrito(cantidad))
+    setCantidadCarrito(agregarAlCarrito(producto.id, cantidad))
   }
+
+  // La página Carrito la llama al quitar un producto o comprar: vuelve a leer el total guardado y actualiza el Header.
+  const actualizarCantidad = () => setCantidadCarrito(obtenerCantidadCarrito())
 
   // Cada vista recibe 'cantidad' y se la pasa a su <Header cantidad={cantidad} />.
   return (
@@ -53,6 +62,9 @@ function App() {
       <Route path='/registro' element={<Registro cantidad={cantidadCarrito} />} />
       <Route path='/agendar' element={<Agendar cantidad={cantidadCarrito} />} />
       <Route path='/perfil' element={<Perfil cantidad={cantidadCarrito} />} />
+      <Route path='/carrito' element={<Carrito cantidad={cantidadCarrito} onCambio={actualizarCantidad} />} />
+      {/* RutaPrivada: solo el administrador con sesión entra; los demás van a /login. */}
+      <Route path='/admin' element={<RutaPrivada><Admin cantidad={cantidadCarrito} /></RutaPrivada>} />
     </Routes>
   )
 }

@@ -1,17 +1,46 @@
-// Contador del carrito. Funciona igual que carrito.js del HTML original:
-// guarda en localStorage un solo número con el total de unidades añadidas.
+// Carrito de compras. Guarda en localStorage una lista de { id, cantidad }:
+// el id del producto y cuántas unidades se añadieron. Así la página Carrito puede mostrar cada producto.
 // localStorage guarda datos en el navegador y se conservan aunque se recargue o se cambie de página.
-const CLAVE = 'carritoCantidad';
+const CLAVE = 'carritoItems';
 
-// Devuelve cuántas unidades hay en el carrito (0 si aún no se ha guardado nada).
-export function obtenerCantidadCarrito() {
-  return parseInt(localStorage.getItem(CLAVE)) || 0;
+// Devuelve la lista del carrito (vacía si aún no hay nada o si lo guardado está dañado).
+export function obtenerCarrito() {
+  try {
+    return JSON.parse(localStorage.getItem(CLAVE)) || [];
+  } catch {
+    return [];
+  }
 }
 
-// Suma 'cantidad' al total guardado y devuelve el nuevo total,
-// para que quien la llame pueda actualizar el contador que se muestra en pantalla.
-export function agregarAlCarrito(cantidad) {
-  const nuevaCantidad = obtenerCantidadCarrito() + cantidad;
-  localStorage.setItem(CLAVE, nuevaCantidad);
-  return nuevaCantidad;
+// Total de unidades del carrito (es el número que muestra el Header).
+export function obtenerCantidadCarrito() {
+  return obtenerCarrito().reduce((total, item) => total + item.cantidad, 0);
+}
+
+// Suma 'cantidad' unidades del producto 'id' (si ya estaba, aumenta su cantidad) y devuelve el nuevo total de unidades.
+export function agregarAlCarrito(id, cantidad) {
+  const items = obtenerCarrito();
+  const unidades = cantidad < 1 ? 1 : cantidad;
+  const existente = items.find((item) => item.id === id);
+
+  if (existente) {
+    existente.cantidad += unidades;
+  } else {
+    items.push({ id, cantidad: unidades });
+  }
+
+  localStorage.setItem(CLAVE, JSON.stringify(items));
+  return obtenerCantidadCarrito();
+}
+
+// Quita un producto completo del carrito y devuelve la lista que queda.
+export function quitarDelCarrito(id) {
+  const items = obtenerCarrito().filter((item) => item.id !== id);
+  localStorage.setItem(CLAVE, JSON.stringify(items));
+  return items;
+}
+
+// Deja el carrito vacío (se usa al comprar).
+export function vaciarCarrito() {
+  localStorage.removeItem(CLAVE);
 }
