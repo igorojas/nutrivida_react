@@ -4,8 +4,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Seccion from '../components/Seccion';
 import Galeria from '../components/Galeria';
+import Contenedor from '../components/Contenedor';
 
 import { queBuscas } from '../data/queBuscas';
+import { ofrecemos } from '../data/ofrecemos';
 import { productos } from '../data/productos';
 
 // 'cantidad' es el total del carrito (viene de App) y se lo pasamos al Header para el contador.
@@ -36,15 +38,10 @@ function Inicio({ cantidad }) {
 
         <Seccion id="Ofrecemos" titulo="Te ofrecemos">
           <ul className="ofrecemos-contenedor">
-            <li className="ofrecemos-item">
-              <h3>Productos y Suplementos Naturales</h3>
-              <p>Descubre nuestra amplia selección de productos y suplementos naturales para complementar tu dieta y mejorar tu salud.</p>
-            </li>
-            <li className="ofrecemos-item">
-              <h3>Planes Saludables</h3>
-              <p>Agenda de forma facil y rapida cita con uno de nuestro nutricionistas.</p>
-              <p>Planea tu rutina nutricional con nuestros expertos y ten un seguimiento dia a dia.</p>
-            </li>
+            {/* Un Contenedor por cada elemento de data/ofrecemos.js (título y párrafos). */}
+            {ofrecemos.map((item) => (
+              <Contenedor key={item.titulo} titulo={item.titulo} parrafos={item.parrafos} className="ofrecemos-item" />
+            ))}
           </ul>
         </Seccion>
 
