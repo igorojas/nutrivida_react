@@ -5,6 +5,8 @@ const CLAVE = 'sesionUsuario';
 // Guarda la sesión del usuario que inició sesión y devuelve lo guardado.
 // Se guardan sus datos de perfil y su rol, pero NUNCA la contraseña.
 export function guardarSesion(usuario) {
+  // La contraseña se separa a propósito para no guardarla: por eso ESLint la ve como variable sin usar.
+  // eslint-disable-next-line no-unused-vars
   const { contrasenia, ...datos } = usuario; // 'datos' es el usuario sin la contraseña
   localStorage.setItem(CLAVE, JSON.stringify(datos));
   return datos;

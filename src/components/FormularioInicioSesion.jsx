@@ -38,8 +38,8 @@ function FormularioInicioSesion() {
 
     guardarSesion(usuario);
     alert('¡Inicio de sesión exitoso!');
-    // Va a Inicio: ahí el Header ya muestra "Mi Perfil" en lugar de "Iniciar Sesión".
-    navigate('/');
+    // Va a Mi Perfil: el Header ya muestra "Mi Perfil" en lugar de "Iniciar Sesión".
+    navigate('/perfil');
   };
 
   return (
