@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { formatoPrecio } from '../utils/formatoPrecio';
+import BotonFavorito from './BotonFavorito';
 
 // Tarjeta del catálogo: enlace al detalle, categoría, descripción, precio y botón Añadir.
 // onAnadir es la función que suma el producto al carrito; la define quien usa la tarjeta (la view).
-function TarjetaCatalogo({ producto, onAnadir }) {
+// favorito (true/false) y onFavorito(producto) dibujan el corazón de favoritos; si no se pasa onFavorito, no se muestra.
+function TarjetaCatalogo({ producto, onAnadir, favorito = false, onFavorito }) {
   // anadido = true muestra "Añadido ✓" durante 1 segundo, igual que el original.
   const [anadido, setAnadido] = useState(false);
 
@@ -34,9 +36,12 @@ function TarjetaCatalogo({ producto, onAnadir }) {
       </Link>
       <div className="producto-pie">
         <p className="producto-precio">{formatoPrecio(producto.precio)}</p>
-        <button className="btn-agregar" onClick={manejarClic}>
-          {anadido ? 'Añadido ✓' : 'Añadir'}
-        </button>
+        <div className="favorito-acciones">
+          {onFavorito && <BotonFavorito producto={producto} activo={favorito} onClick={() => onFavorito(producto)} />}
+          <button className="btn-agregar" onClick={manejarClic}>
+            {anadido ? 'Añadido ✓' : 'Añadir'}
+          </button>
+        </div>
       </div>
     </article>
   );

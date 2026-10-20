@@ -267,3 +267,88 @@
         flex-direction: column;
     }
 }
+
+
+/* ==========================================================================
+   AGREGADO PARA LOS FILTROS Y FAVORITOS DEL CATÁLOGO
+   Reglas nuevas con clases nuevas (.filtros-*, .favorito-acciones, .btn-favorito,
+   .favoritos-check): no modifican ninguna regla de arriba. Usan las variables de App.css.
+   Los campos de texto y select toman su aspecto de .campo-form (Agendar_Style.css y Admin_Style.css).
+   ========================================================================== */
+
+/* ---------- Barra de filtros (buscador, categoría y casilla de favoritos) ---------- */
+.filtros-barra {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* Cada campo ocupa la mitad de la fila; el selector doble gana sobre el margen de .campo-form */
+.filtros-barra .filtros-campo {
+    flex: 1 1 220px;
+    margin-bottom: 0;
+}
+
+/* Casilla "Solo favoritos" */
+.filtros-barra .favoritos-check {
+    flex: 0 0 auto;
+    align-self: flex-end;
+    padding-bottom: 12px;
+    color: var(--texto);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* Aviso cuando ningún producto coincide con la búsqueda */
+.filtros-vacio {
+    text-align: center;
+    color: var(--texto-secundario);
+    padding: 30px 20px;
+}
+
+/* ---------- Corazón de favoritos en la tarjeta ---------- */
+/* Agrupa el botón de añadir y el corazón (pie de la tarjeta y detalle del producto), con espacio entre los dos */
+.favorito-acciones {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.btn-favorito {
+    background: none;
+    border: 1px solid var(--borde-suave);
+    color: var(--texto-secundario);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 17px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-favorito:hover {
+    color: var(--verde-oscuro);
+    border-color: var(--verde-oscuro);
+    transform: translateY(-1px);
+}
+
+/* Producto marcado como favorito */
+.btn-favorito.activo {
+    color: var(--verde-oscuro);
+    border-color: var(--verde-oscuro);
+    background-color: var(--verde-suave);
+}
+
+/* ---------- Móvil (filtros) ---------- */
+@media (max-width: 800px) {
+    .filtros-barra {
+        flex-direction: column;
+    }
+
+    .filtros-barra .favoritos-check {
+        align-self: flex-start;
+        padding-bottom: 0;
+    }
+}

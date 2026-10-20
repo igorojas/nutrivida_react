@@ -5,7 +5,8 @@ import TarjetaCatalogo from './TarjetaCatalogo';
 //  - 'tarjeta', 'tarjeta-bestseller' o 'relacionado-tarjeta' -> Tarjeta (categorías, Best Sellers y relacionados)
 //  - 'producto-tarjeta' -> TarjetaCatalogo (catálogo; es más compleja, por eso es un componente aparte)
 // 'onAnadir' solo se usa con las tarjetas del catálogo: es la función que suma el producto al carrito.
-function Galeria({ datos, className, tarjetaClassName, onAnadir }) {
+// 'favoritos' (lista de ids) y 'onFavorito' tampoco se usan fuera del catálogo: marcan y alternan los favoritos.
+function Galeria({ datos, className, tarjetaClassName, onAnadir, favoritos = [], onFavorito }) {
   const esCatalogo = tarjetaClassName === 'producto-tarjeta';
 
   return (
@@ -24,7 +25,13 @@ function Galeria({ datos, className, tarjetaClassName, onAnadir }) {
     <div className={className}>
       {datos.map((item) =>
         esCatalogo ? (
-          <TarjetaCatalogo key={item.id} producto={item} onAnadir={onAnadir} />
+          <TarjetaCatalogo
+            key={item.id}
+            producto={item}
+            onAnadir={onAnadir}
+            favorito={favoritos.includes(item.id)}
+            onFavorito={onFavorito}
+          />
         ) : (
           <Tarjeta key={item.id} item={item} tarjetaClassName={tarjetaClassName} />
         )

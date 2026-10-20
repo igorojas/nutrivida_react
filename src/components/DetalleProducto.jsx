@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import VisorImagenes from './VisorImagenes';
 import CampoFormulario from './CampoFormulario';
+import BotonFavorito from './BotonFavorito';
 import { formatoPrecio } from '../utils/formatoPrecio';
 
 // Bloque principal del detalle: galería a la izquierda e información a la derecha.
 // Devuelve las dos columnas sueltas porque van dentro de <Seccion className="seccion producto-detalle"> en la view.
 // onAnadir(producto, cantidad) suma al carrito; la define quien usa el componente (la view).
+// favorito (true/false) y onFavorito(producto) dibujan el corazón a la derecha del botón; si no se pasa onFavorito, no se muestra.
 // Al cambiar de producto sin salir de la página, la view debe pasarle key={producto.id} para reiniciar cantidad y mensaje.
-function DetalleProducto({ producto, onAnadir }) {
+function DetalleProducto({ producto, onAnadir, favorito = false, onFavorito }) {
   // Valor del campo "Cantidad" (texto, porque así lo entrega el <input>).
   const [cantidad, setCantidad] = useState(1);
   // Aviso del último "Añadir": { unidades }; null = sin mensaje. Se guarda como objeto nuevo en cada clic
@@ -53,7 +55,10 @@ function DetalleProducto({ producto, onAnadir }) {
         {/* Un solo <br />: el campo ahora va dentro de un div, que ya corta la línea, y así queda el mismo espacio que el original (dos <br />) */}
         <br />
         {/* Sin clase 'submit': en el original esta página no cargaba el CSS de esa clase (es del registro), así que era el botón normal del navegador */}
-        <button id="btn-agregar-carrito" onClick={manejarClic}>Añadir al carrito</button>
+        <div className="favorito-acciones">
+          <button id="btn-agregar-carrito" onClick={manejarClic}>Añadir al carrito</button>
+          {onFavorito && <BotonFavorito producto={producto} activo={favorito} onClick={() => onFavorito(producto)} />}
+        </div>
         <p id="mensaje-agregado" className="mensaje-agregado">
           {aviso !== null && `Se añadió ${aviso.unidades} producto(s) al carrito.`}
         </p>

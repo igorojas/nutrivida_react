@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,6 +8,7 @@ import DetalleProducto from '../components/DetalleProducto';
 import Error404 from './Error404';
 
 import { productos } from '../data/productos';
+import { obtenerFavoritos, alternarFavorito } from '../utils/favoritos';
 
 // 'cantidad' es el total del carrito (viene de App) y se lo pasamos al Header para el contador.
 // 'onAnadir' es la función de App que suma al carrito; DetalleProducto la usa con la cantidad elegida.
@@ -18,6 +19,9 @@ function Producto({ cantidad, onAnadir }) {
   // Number('3') da 3 y Number('3abc') da NaN, así que un id mal escrito no coincide con ningún producto.
   // Si el id no existe (producto queda undefined) más abajo se muestra la página 404.
   const producto = productos.find((p) => p.id === Number(id));
+
+  // favoritos = ids de los productos marcados con el corazón (los mismos que usa el catálogo, guardados en localStorage).
+  const [favoritos, setFavoritos] = useState(obtenerFavoritos);
 
   // Título de la pestaña según el producto ("Nombre - NutriVida"); se actualiza al cambiar de producto.
   // Va antes del 'return' condicional porque los hooks siempre deben ejecutarse en el mismo orden;
@@ -43,7 +47,13 @@ function Producto({ cantidad, onAnadir }) {
 
         {/* key={producto.id} reinicia cantidad, aviso e imagen activa al pasar a otro producto desde los relacionados */}
         <Seccion className="seccion producto-detalle">
-          <DetalleProducto key={producto.id} producto={producto} onAnadir={onAnadir} />
+          <DetalleProducto
+            key={producto.id}
+            producto={producto}
+            onAnadir={onAnadir}
+            favorito={favoritos.includes(producto.id)}
+            onFavorito={(p) => setFavoritos(alternarFavorito(p.id))}
+          />
         </Seccion>
 
         <Seccion>
