@@ -11,7 +11,8 @@ import { nutricionistas } from '../data/nutricionistas';
 // Asistente de 3 pasos para agendar una cita. Aquí vive todo el estado de la reserva;
 // los componentes hijos solo muestran datos y avisan lo que el usuario elige.
 // Devuelve el indicador y los 3 paneles: la view lo pone dentro de <Seccion>.
-function AsistenteReserva() {
+// usuario: la sesión (o null), que la view lee y que solo usa el formulario del paso 3.
+function AsistenteReserva({ usuario }) {
   const [paso, setPaso] = useState(1);
   const [nutricionista, setNutricionista] = useState(null);
   const [fecha, setFecha] = useState(null);
@@ -86,7 +87,7 @@ function AsistenteReserva() {
         <p className="paso-nota">Completa tus datos para que el equipo de NutriVida pueda contactarte antes de tu cita.</p>
 
         {nombreExito === null ? (
-          <FormularioCita nutricionista={nutricionista} fecha={fecha} hora={hora} onConfirmar={setNombreExito} />
+          <FormularioCita nutricionista={nutricionista} fecha={fecha} hora={hora} usuario={usuario} onConfirmar={setNombreExito} />
         ) : (
           <MensajeExito nombre={nombreExito} onNuevaCita={reiniciar} />
         )}

@@ -52,6 +52,30 @@ export function contrasenaNoVacia(valor) {
   return valor.trim() !== '';
 }
 
+// Rangos válidos de las medidas de salud (se usan al validar y como min y max de los campos numéricos).
+export const rangos = {
+  peso: { min: 20, max: 300 }, // kg
+  estatura: { min: 100, max: 250 }, // cm
+  cintura: { min: 30, max: 200 }, // cm
+  sueno: { min: 1, max: 16 } // horas por día
+};
+
+// Un select es válido si se eligió una opción (el valor vacío es "Seleccione...").
+export function validarSeleccion(valor) {
+  return valor !== '';
+}
+
+// Número dentro del rango (incluye los extremos). Un campo vacío no es válido.
+export function validarRango(valor, minimo, maximo) {
+  const numero = Number(valor);
+  return valor !== '' && Number.isFinite(numero) && numero >= minimo && numero <= maximo;
+}
+
+// Texto de al menos 'minimo' caracteres sin contar los espacios del principio y del final.
+export function validarTextoMinimo(valor, minimo = 10) {
+  return valor.trim().length >= minimo;
+}
+
 // Mensajes de error que se muestran al usuario (los mismos de los alert del original).
 export const mensajes = {
   nombre: 'El nombre debe contener solo letras.',
@@ -64,5 +88,25 @@ export const mensajes = {
   credenciales: 'Correo o contraseña incorrectos.',
   productoNombre: 'Ingrese el nombre del producto.',
   productoPrecio: 'El precio debe ser un número mayor a 0.',
-  productoDescripcion: 'Ingrese una descripción.'
+  productoDescripcion: 'Ingrese una descripción.',
+  sexo: 'Seleccione su sexo biológico.',
+  genero: 'Seleccione su identidad de género.',
+  peso: `El peso debe estar entre ${rangos.peso.min} y ${rangos.peso.max} kg.`,
+  estatura: `La estatura debe estar entre ${rangos.estatura.min} y ${rangos.estatura.max} cm.`,
+  cintura: `La cintura debe estar entre ${rangos.cintura.min} y ${rangos.cintura.max} cm.`,
+  alergias: 'Indique si tiene alergias o restricciones alimentarias.',
+  alergiasDetalle: 'Describa sus alergias o restricciones alimentarias (mínimo 10 caracteres).',
+  enfermedad: 'Indique si tiene alguna enfermedad.',
+  enfermedadDetalle: 'Describa su enfermedad (mínimo 10 caracteres).',
+  patron: 'Seleccione su patrón alimenticio.',
+  motivo: 'El motivo de consulta debe tener al menos 10 caracteres.',
+  objetivo: 'Seleccione su objetivo nutricional.',
+  imc: 'Seleccione su categoría de IMC.',
+  historial: 'El historial médico debe tener al menos 10 caracteres (si no tiene, escriba "Sin antecedentes médicos").',
+  medicamentos: 'Indique si usa medicamentos actualmente.',
+  medicamentosDetalle: 'Indique qué medicamentos usa (mínimo 10 caracteres).',
+  actividad: 'Seleccione cuánta actividad física realiza.',
+  sueno: `Las horas de sueño deben estar entre ${rangos.sueno.min} y ${rangos.sueno.max}.`,
+  estres: 'Seleccione su nivel de estrés.',
+  sesionRequerida: 'Por favor inicie sesión para agendar su cita.'
 };
