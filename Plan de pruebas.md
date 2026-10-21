@@ -1,6 +1,6 @@
 # Plan de Pruebas Unitarias
 
-**Nombre del Estudiante:** Victor Andrade
+**Nombre de los Estudiantes:** Vicente Lopez e Igor Rojas
 
 <br />
 
@@ -8,7 +8,7 @@
 
 <br />
 
-**Fecha:** 01-01-2027
+**Fecha:** 21-10-2026
 
 | ID | Componente <br> *(describe)* | Caso de Prueba<br>*(it / test)* | Preparación<br>*(Arrange: props, mocks)* | Acción<br>*(Act: fireEvent, render)* | Resultado Esperado<br>*(Assert: expect)* | Estado<br>*(Pasa / Falla)* |
 
