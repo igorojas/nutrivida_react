@@ -14,6 +14,12 @@
     --sombra: rgba(20, 63, 47, 0.10);
 }
 
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 * { /* Selector universal que cambia la forma en la que el navegador calcula el tamaño */
     box-sizing: border-box;
 }
@@ -132,6 +138,8 @@ body {
 
 /* ---------- Estructura del contenido ---------- */
 #contenido { /* Main Id */
+    flex: 1;            /* Ocupa todo el espacio vertical disponible, empujando al footer abajo */
+    width: 100%;
     max-width: 1200px;
     margin: 44px auto;
     padding: 0 20px;
