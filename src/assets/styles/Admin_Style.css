@@ -79,3 +79,29 @@
 .btn-admin-eliminar:hover {
     background-color: #fdecea;
 }
+
+/* ---------- Adaptación ---------- */
+@media (max-width: 800px) {
+    .admin-form {
+        max-width: 100%;
+    }
+
+    .admin-stat {
+        min-width: 140px;
+    }
+
+    .admin-stat-valor {
+        font-size: 24px;
+    }
+
+    /* Ancho mínimo para que la tabla haga scroll horizontal en vez de aplastarse */
+    .admin-tabla {
+        min-width: 480px;
+        font-size: 14px;
+    }
+
+    .admin-tabla th,
+    .admin-tabla td {
+        padding: 10px 8px;
+    }
+}

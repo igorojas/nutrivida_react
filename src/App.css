@@ -234,3 +234,46 @@ button {
     opacity: 0.85;
     letter-spacing: 0.3px;
 }
+
+/* ---------- Adaptación a móvil ---------- */
+@media (max-width: 800px) {
+    /* Encabezado: logo y eslogan apilados en vez de comprimidos en una fila */
+    #encabezado {
+        flex-direction: column;
+        gap: 6px;
+        padding: 16px 20px;
+        text-align: center;
+    }
+
+    #encabezado h1 {
+        font-size: 28px;
+    }
+
+    #encabezado p {
+        font-size: 16px;
+    }
+
+    /* Barra de navegación: deja de ser fija (con varias filas taparía la pantalla) y es más compacta */
+    .topnav {
+        position: static;
+    }
+
+    .topnav a {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    .topnav .carrito-contador {
+        padding: 10px 14px;
+    }
+
+    /* Contenido y secciones con menos margen y relleno */
+    #contenido {
+        margin: 24px auto;
+        padding: 0 12px;
+    }
+
+    .seccion {
+        padding: 20px 16px;
+    }
+}

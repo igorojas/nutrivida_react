@@ -95,3 +95,34 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ---------- Adaptación ---------- */
+@media (max-width: 800px) {
+    .carrito-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Móvil: la fila del producto pasa el subtotal y "Quitar" a una línea propia */
+@media (max-width: 500px) {
+    .carrito-item {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .carrito-info {
+        flex: 1 1 140px;
+    }
+
+    .carrito-lado {
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+
+    .carrito-subtotal {
+        margin: 0;
+    }
+}
